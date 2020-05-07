@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, viewport-fit=cover, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="keywords" content="">
+		<link rel="icon" href="/static/favicon.ico">
+        <title><%= htmlWebpackPlugin.options.title %></title>
+		<script type="text/javascript" charset="UTF-8" src="//res.cdn.openinstall.io/openinstall.js"></script>
+        <!-- <script type="text/javascript" id="_openinstall_banner" src="//openinstall.io/openinstall.js?id=5649064714160545074"></script>  -->
+        <script type="text/javascript">
+            //openinstall初始化时将与openinstall服务器交互，应尽可能早的调用
+            /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+            var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
+            new OpenInstall({
+                /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+                appKey : "mgmh5o",
+                /*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+                apkFileName : '吧吧吗吗家庭网APP',
+                /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+                //preferWakeup:true,
+                /*自定义遮罩的html*/
+                //mask:function(){
+                //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+                //},
+                /*openinstall初始化完成的回调函数，可选*/
+                onready : function() {
+                    var m = this, button = document.getElementById("downloadButton");
+                    // button.style.visibility = "visible";
+
+                    /*在app已安装的情况尝试拉起app*/
+                    m.schemeWakeup();
+                    /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+                    // button.onclick = function() {
+                    //     m.wakeupOrInstall();
+                    //     return false;
+                    // }
+                    window.openInstall = function() {
+                        m.wakeupOrInstall();
+                        return false;
+                    }
+                }
+            }, data);
+
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
+            })
+        </script>
+        <script>
+            var _dgt = _dgt || [];
+            window._dgt = _dgt;
+            (function () {
+              _dgt.push(['enableh5tag']);
+              _dgt.push(['setSiteId', '95be0c34999bf9bc']);
+              var d = document, g = d.createElement('script'),
+              s = d.getElementsByTagName('script')[0];
+              g.type = 'text/javascript'; g.async = true;
+              g.defer = true;
+              g.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'data.babamama.cn/dgt.js';
+              s.parentNode.insertBefore(g, s);
+            })();
+          </script>
+        <link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
+    </head>
+    <body>
+		<!-- 该文件为 H5 平台的模板 HTML，并非应用入口。 -->
+		<!-- 请勿在此文件编写页面代码或直接运行此文件。 -->
+		<!-- 详见文档：https://uniapp.dcloud.io/collocation/manifest?id=h5-template -->
+        <noscript>
+            <strong>Please enable JavaScript to continue.</strong>
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+    </body>
+</html>

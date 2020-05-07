@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "lhsh",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#000",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
